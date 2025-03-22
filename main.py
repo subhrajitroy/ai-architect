@@ -13,8 +13,8 @@ def main():
     Main function that demonstrates the analysis of an ADR using architecture principles.
     """
     cwd = os.getcwd();
-    arch_principles_text = load_file(file_path=f"{cwd}/architecture_principles.md")
-    adr_text = load_file(file_path=f"{cwd}/sample_adr.md")
+    arch_principles_text = load_file(file_path=f"{cwd}/data/architecture_principles.md")
+    adr_text = load_file(file_path=f"{cwd}/data/adr/sample_adr.md")
     architect = Architect(architecture_principles=arch_principles_text)
     response = architect.analyze_adr(adr_content=adr_text)
     print(response)
