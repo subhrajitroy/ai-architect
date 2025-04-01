@@ -11,26 +11,19 @@ class Architect(Agent):
     loaded from a text file.
     """
     
-    def __init__(self, architecture_principles,model_name="gpt-3.5-turbo", temperature=0.7, provider="openai"):
+    def __init__(self, architecture_principles,
+                 adr_repo,
+                 model_name="gpt-3.5-turbo", 
+                 temperature=0.7, provider="openai"):
         super().__init__(model_name,temperature,provider)
         self.principles = architecture_principles
+        self.adr_repo = adr_repo
         
     
     
     
-    def analyze_adr(self, adr_content):
-        """
-        Analyze an Architecture Decision Record and provide feedback.
-        
-        Args:
-            adr_content (str): The content of the ADR to analyze.
-            architect (Architect, optional): An Architect instance containing principles
-                                           to consider during analysis.
-            
-        Returns:
-            AnalysisResult: A structured analysis result with status and summary.
-        """
-        
+    def analyze_adr(self, adr):
+        adrs = self.adr_repo.get_similar_adrs(adr)
         prompt = f"""
         Please analyze the following Architecture Decision Record:
         
